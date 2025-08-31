@@ -58,6 +58,9 @@ export default async function MaterialsPage() {
             <div className="font-medium">{m.title} <span className="text-xs text-gray-500">({m.fileType})</span></div>
             <div className="text-sm text-gray-600 dark:text-gray-300">{m.subject.name} - {m.subject.grade}</div>
             <a className="text-sm underline" href={m.fileUrl} target="_blank">Buka file</a>
+            <div className="mt-2">
+              <a className="text-sm rounded-md border px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-900" href={`/admin/materials/${m.id}`}>Edit</a>
+            </div>
           </div>
         ))}
       </div>

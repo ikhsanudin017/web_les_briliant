@@ -47,6 +47,7 @@ export default async function TestsPage() {
             </div>
             <div className="flex items-center gap-2">
               <Link className="text-sm underline" href={`/admin/tests/${t.id}`}>Kelola Soal</Link>
+              <Link className="text-sm rounded-md border px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-900" href={`/admin/tests/${t.id}/settings`}>Pengaturan</Link>
             </div>
           </div>
         ))}
@@ -64,4 +65,3 @@ async function createTest(formData: FormData) {
   if (!title || !subjectId || !duration) return;
   await prisma.test.create({ data: { title, subjectId, description, duration, isActive: true } });
 }
-

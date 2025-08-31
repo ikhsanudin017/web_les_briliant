@@ -9,7 +9,10 @@ export default async function ManageTestPage({ params }: { params: { id: string 
   if (!test) return <div className="container mx-auto px-4 py-8">Tryout tidak ditemukan.</div>;
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold">{test.title} <span className="text-sm text-gray-500">({test.subject.name})</span></h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">{test.title} <span className="text-sm text-gray-500">({test.subject.name})</span></h1>
+        <a href={`/admin/tests/${test.id}/settings`} className="text-sm rounded-md border px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-900">Pengaturan</a>
+      </div>
       <div className="mt-4 grid gap-6 md:grid-cols-2">
         <form action={addQuestion.bind(null, test.id)} className="grid gap-2">
           <h2 className="font-medium">Tambah Soal</h2>
@@ -78,4 +81,3 @@ async function importCsv(testId: string, formData: FormData) {
   if (!data.length) return;
   await prisma.question.createMany({ data: data.map(d => ({ testId, ...d })) });
 }
-

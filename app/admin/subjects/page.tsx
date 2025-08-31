@@ -29,6 +29,9 @@ export default async function SubjectsPage() {
           <div key={s.id} className="rounded-md border p-3">
             <div className="font-medium">{s.name} <span className="text-xs text-gray-500">({s.grade})</span></div>
             {s.description && <div className="text-sm text-gray-600 dark:text-gray-300">{s.description}</div>}
+            <div className="mt-2">
+              <a className="text-sm rounded-md border px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-900" href={`/admin/subjects/${s.id}`}>Edit</a>
+            </div>
           </div>
         ))}
       </div>
@@ -44,4 +47,3 @@ async function createSubject(formData: FormData) {
   if (!name || !grade) return;
   await prisma.subject.create({ data: { name, grade, description } });
 }
-
