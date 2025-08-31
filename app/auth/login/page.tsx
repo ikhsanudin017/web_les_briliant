@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 
 const schema = z.object({ email: z.string().email(), password: z.string().min(6) });
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const params = useSearchParams();
   const [error, setError] = useState<string | null>(params.get("error"));
@@ -66,5 +66,13 @@ export default function LoginPage() {
         Belum punya akun? <a className="underline" href="/auth/register">Daftar</a>
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

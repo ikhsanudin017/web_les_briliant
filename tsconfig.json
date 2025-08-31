@@ -19,7 +19,7 @@
       "@/lib/*": ["./lib/*"],
       "@/app/*": ["./app/*"]
     },
-    "types": ["node", "jest", "next", "next/types", "next/image-types"]
+    "types": ["node", "jest", "next", "next/types"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
