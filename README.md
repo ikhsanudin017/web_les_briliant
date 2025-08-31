@@ -29,10 +29,11 @@ Aplikasi web LES (bimbingan belajar) built with Next.js 14 (App Router), Tailwin
 
 ## Setup Lokal
 1. Salin `.env.example` menjadi `.env.local` dan isi variabel:
-   - `DATABASE_URL` (PostgreSQL, mis. Supabase/Neon)
+   - `DATABASE_URL` (pakai koneksi Postgres Anda; untuk Neon disarankan URL dengan parameter Prisma)
    - `NEXTAUTH_SECRET` (generate: `openssl rand -base64 32`)
+   - Optional: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME` untuk seeder admin
    - Optional: Uploadthing & SMTP
-2. Install dependencies:
+2. Install dependencies (Prisma Client akan di-generate saat build juga):
    - `pnpm i` atau `npm i`
 3. Prisma migrate & generate:
    - `npx prisma migrate dev` (buat skema DB)
@@ -63,11 +64,13 @@ Aplikasi web LES (bimbingan belajar) built with Next.js 14 (App Router), Tailwin
 2. Buat project di Vercel, pilih repo.
 3. Konfigurasi Environment Variables di Vercel:
    - `NEXTAUTH_URL` (contoh: https://brilliant-les.vercel.app)
-   - `NEXTAUTH_SECRET`
-   - `DATABASE_URL` (postgre dari Supabase/Neon)
+   - `NEXTAUTH_SECRET` (string acak aman)
+   - `DATABASE_URL` (rekomendasi: salin `POSTGRES_PRISMA_URL` dari Neon)
+   - Optional: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME`
    - Optional: UPLOADTHING_* dan SMTP_*
-4. Jalankan `Prisma migrate` di DB produksi:
-   - Vercel: gunakan `prisma migrate deploy` (set sebagai postinstall atau lewat CLI lokal)
+4. Migrasi skema DB produksi (direkomendasikan via lokal):
+   - Set `.env.local` dengan `DATABASE_URL` produksi, lalu jalankan `npx prisma migrate deploy`
+   - Atau jalankan dari CI/CD sesuai kebutuhan
 5. Build & Deploy otomatis di Vercel.
 6. Domain kustom: tambahkan domain di Vercel dan arahkan DNS.
 
