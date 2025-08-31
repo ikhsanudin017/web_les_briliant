@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.5rem;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-50 antialiased font-sans;
+  background-image: radial-gradient(60rem 60rem at 10% -10%, rgba(36, 99, 235, 0.08), transparent),
+    radial-gradient(40rem 40rem at 90% 10%, rgba(99, 102, 241, 0.08), transparent);
+}
+
+/* Subtle glass layer for extra depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom right, rgba(36, 99, 235, 0.04), rgba(99, 102, 241, 0.04));
+  mix-blend-mode: normal;
+}
+
+.container-prose h1 { @apply text-4xl font-bold tracking-tight; }
+.container-prose h2 { @apply text-2xl font-semibold mt-8 mb-4; }
+.container-prose p { @apply text-base leading-relaxed; }
+
+/* Utility: gradient text */
+.text-gradient {
+  background: linear-gradient(90deg, #2463EB 0%, #6366F1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

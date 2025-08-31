@@ -1,0 +1,12 @@
+{
+  "name": "Bimbingan Belajar Brilliant",
+  "short_name": "Brilliant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2463EB",
+  "icons": [
+    { "src": "/icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
+
