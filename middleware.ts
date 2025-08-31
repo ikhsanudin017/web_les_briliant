@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { withAuth } from "next-auth/middleware";
+import { withAuth, type NextRequestWithAuth } from "next-auth/middleware";
 import { rateLimit } from "@/lib/rate-limit";
 
 export default withAuth(
-  function middleware(req: NextRequest) {
+  function middleware(req: NextRequestWithAuth) {
     const { pathname } = req.nextUrl;
     const role = req.nextauth?.token?.role as "ADMIN" | "STUDENT" | undefined;
 
